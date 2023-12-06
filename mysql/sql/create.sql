@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS tags(
 );
 
 CREATE TABLE IF NOT EXISTS article_tags(
-  FOREIGN KEY (article_id) REFERENCES articles (id),
-  FOREIGN KEY (tag_id)     REFERENCES tags     (id),
+  article_id VARCHAR(32) NOT NULL,
+  tag_id     VARCHAR(32) NOT NULL,
   PRIMARY KEY (article_id, tag_id)
 );
