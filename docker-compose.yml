@@ -26,7 +26,7 @@ services:
     platform: linux/x86_64
     volumes:
       - /var/lib/mysql
-      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./mysql/sql:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
