@@ -38,7 +38,7 @@ services:
       context: .
       dockerfile: ./docker/frontend.Dockerfile
     volumes:
-      - ./frontend/:/app
+      - ./frontend/:/app/
     environment:
       - WATCHPACK_POLLING=true
     command: sh -c "npm run dev"
