@@ -1,8 +1,17 @@
-FROM golang:1.20
+FROM golang:1.20-buster as builder
 
-RUN mkdir /go/src/home
-WORKDIR /go/src/home
+WORKDIR /go/src
 
-RUN go install github.com/cosmtrek/air@v1.43.0 \
-    && go install github.com/swaggo/swag/cmd/swag@latest \
-    && go install github.com/golang/mock/mockgen@latest
+COPY ../backend/go.* ./
+RUN go mod download
+
+COPY ../backend/ ./
+RUN go build -v -o /go/bin/server .
+
+FROM debian:buster-slim
+
+WORKDIR /go/bin
+
+COPY --from=builder /go/bin/server ./server
+
+ENTRYPOINT ["/go/bin/server"]
