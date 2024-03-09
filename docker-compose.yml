@@ -35,8 +35,8 @@ services:
       - MYSQL_DATABASE=contents
   frontend:
     build:
-      context: .
-      dockerfile: ./docker/frontend.Dockerfile
+      context: ./docker
+      dockerfile: frontend.Dockerfile
     volumes:
       - ./frontend/:/app/
     environment:
