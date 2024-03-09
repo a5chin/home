@@ -33,3 +33,14 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=contents
+  frontend:
+    build:
+      context: ./docker
+      dockerfile: frontend.Dockerfile
+    volumes:
+      - ./frontend/:/app/
+    environment:
+      - WATCHPACK_POLLING=true
+    command: sh -c "npm run dev"
+    ports:
+      - "3000:3000"
