@@ -32,7 +32,7 @@ services:
       - "3306:3306"
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_DATABASE=contents
+      - MYSQL_DATABASE=home
   frontend:
     build:
       context: ./docker
