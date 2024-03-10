@@ -10,13 +10,13 @@ variable "location" {
 
 variable "run" {
   type = object({
-    name  = optional(string, "home-frontend")
-    image = string
+    name               = optional(string, "home-frontend")
+    image              = string
     max_instance_count = optional(number, 1)
     min_instance_count = optional(number, 0)
     cpu                = optional(string, "1")
     memory             = optional(string, "128Mi")
-    executor           = object({
+    executor = object({
       id = string
       roles = optional(
         set(string), [
@@ -25,5 +25,5 @@ variable "run" {
       )
     })
   })
- description = "The settings for the Cloud Run in Frontend"
+  description = "The settings for the Cloud Run in Frontend"
 }
