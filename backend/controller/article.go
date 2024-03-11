@@ -27,9 +27,9 @@ type GetArticlesResponse struct {
 
 // GetArticles godoc
 //
-// @Summary    投稿一覧取得API
+// @Summary    記事一覧取得 API
 // @Description
-// @Tags       Post
+// @Tags       Article
 // @Accept     json
 // @Produce    json
 // @Param      limit   	query       string  false   "limit"
