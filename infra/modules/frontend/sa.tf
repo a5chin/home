@@ -12,9 +12,9 @@ resource "google_project_iam_member" "frontend_executor" {
 }
 
 resource "google_cloud_run_v2_service_iam_member" "frontend_invoker" {
-  project  = google_cloud_run_v2_service.main.project
-  location = google_cloud_run_v2_service.main.location
-  name     = google_cloud_run_v2_service.main.name
+  project  = google_cloud_run_v2_service.frontend.project
+  location = google_cloud_run_v2_service.frontend.location
+  name     = google_cloud_run_v2_service.frontend.name
   role     = "roles/run.invoker"
   member   = "allUsers"
 }

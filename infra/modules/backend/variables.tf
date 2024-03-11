@@ -47,3 +47,7 @@ variable "db" {
     collation     = optional(string, "utf8mb4_unicode_ci")
   })
 }
+
+variable "frontend" {
+  description = "Outputs in the Frontend."
+}

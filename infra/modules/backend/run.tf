@@ -1,4 +1,4 @@
-resource "google_cloud_run_v2_service" "main" {
+resource "google_cloud_run_v2_service" "backend" {
   name     = var.run.name
   location = var.location
 
