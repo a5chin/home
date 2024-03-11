@@ -24,9 +24,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Post"
+                    "Article"
                 ],
-                "summary": "投稿一覧取得API",
+                "summary": "記事一覧取得 API",
                 "parameters": [
                     {
                         "type": "string",
@@ -62,6 +62,40 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/viewers": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Viewer"
+                ],
+                "summary": "閲覧人数取得 API",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.GetViewersResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/entity.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/entity.ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -73,6 +107,14 @@ const docTemplate = `{
                     "items": {
                         "$ref": "#/definitions/entity.Article"
                     }
+                }
+            }
+        },
+        "controller.GetViewersResponse": {
+            "type": "object",
+            "properties": {
+                "viewers": {
+                    "type": "integer"
                 }
             }
         },

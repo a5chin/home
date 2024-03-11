@@ -29,10 +29,13 @@ func main() {
 
 	// Dependency Injection
 	articleRepository := repository.NewArticleRepository()
+	viewerRepository := repository.NewViewerRepository()
 
 	articleUseCase := usecase.NewArticleUseCase(articleRepository)
+	viewerUseCase := usecase.NewViewerUseCase(viewerRepository)
 
 	articleController := controller.NewArticleController(articleUseCase)
+	viewerController := controller.NewViewerController(viewerUseCase)
 
 	// Setup webserver
 	app := gin.Default()
@@ -47,6 +50,9 @@ func main() {
 
 		articleRouter := v1.Group("articles")
 		articleRouter.GET("", handleResponse(articleController.GetArticles))
+
+		viewerRouter := v1.Group("viewers")
+		viewerRouter.GET("", handleResponse(viewerController.GetViewers))
 	}
 
 	runApp(app, conf)

@@ -13,7 +13,7 @@ type ArticleController struct {
 }
 
 func NewArticleController(u ArticleUseCase) *ArticleController {
-	return &ArticleController{ArticleUseCase: u}
+	return &ArticleController{u}
 }
 
 type GetArticlesQuery struct {
