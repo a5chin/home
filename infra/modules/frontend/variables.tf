@@ -1,14 +1,15 @@
 variable "project_id" {
-  type        = string
   description = "The ID of the Project."
+  type        = string
 }
 
 variable "location" {
-  type        = string
   description = "The location of resources."
+  type        = string
 }
 
 variable "run" {
+  description = "The settings for the Cloud Run in Frontend."
   type = object({
     name               = optional(string, "home-frontend")
     image              = string
@@ -25,5 +26,4 @@ variable "run" {
       )
     })
   })
-  description = "The settings for the Cloud Run in Frontend"
 }
