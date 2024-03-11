@@ -17,7 +17,7 @@ variable "run" {
     executor = optional(
       object({
         id = string
-      }), {
+        }), {
         id = "home-backend"
       }
     )
