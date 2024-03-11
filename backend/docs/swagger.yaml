@@ -1,7 +1,64 @@
+definitions:
+  controller.GetArticlesResponse:
+    properties:
+      articles:
+        items:
+          $ref: '#/definitions/entity.Article'
+        type: array
+    type: object
+  entity.Article:
+    properties:
+      content:
+        type: string
+      favorite:
+        type: integer
+      id:
+        type: string
+      title:
+        type: string
+      viewer:
+        type: integer
+    type: object
+  entity.ErrorResponse:
+    properties:
+      message:
+        type: string
+    type: object
 info:
   contact: {}
   description: home
   title: home
   version: "1.0"
-paths: {}
+paths:
+  /articles:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.GetArticlesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/entity.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/entity.ErrorResponse'
+      summary: 投稿一覧取得API
+      tags:
+      - Post
 swagger: "2.0"

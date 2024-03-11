@@ -6,10 +6,13 @@ import (
 	"net/http"
 
 	"home/config"
+	"home/controller"
 	"home/docs"
 	"home/entity"
 	"home/infrastructure/driver"
 	"home/infrastructure/middleware"
+	"home/infrastructure/repository"
+	"home/usecase"
 
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -24,6 +27,13 @@ func main() {
 	conf := config.Load()
 	db := driver.NewDB(conf)
 
+	// Dependency Injection
+	articleRepository := repository.NewArticleRepository()
+
+	articleUseCase := usecase.NewArticleUseCase(articleRepository)
+
+	articleController := controller.NewArticleController(articleUseCase)
+
 	// Setup webserver
 	app := gin.Default()
 	app.Use(middleware.Transaction(db))
@@ -31,6 +41,13 @@ func main() {
 	app.GET("", func(ctx *gin.Context) {
 		ctx.String(http.StatusOK, "It works")
 	})
+
+	{
+		v1 := app.Group("/api/v1")
+
+		articleRouter := v1.Group("articles")
+		articleRouter.GET("", handleResponse(articleController.GetArticles))
+	}
 
 	runApp(app, conf)
 }
