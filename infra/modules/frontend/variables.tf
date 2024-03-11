@@ -11,7 +11,7 @@ variable "location" {
 variable "run" {
   description = "The settings for the Cloud Run in Frontend."
   type = object({
-    name               = optional(string, "home-frontend")
+    name               = string
     image              = string
     max_instance_count = optional(number, 1)
     min_instance_count = optional(number, 0)

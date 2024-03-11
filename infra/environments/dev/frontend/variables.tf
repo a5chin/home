@@ -12,6 +12,7 @@ variable "location" {
 variable "run" {
   description = "The settings for the Cloud Run in Frontend."
   type = object({
+    name  = optional(string, "home-frontend")
     image = string
     executor = object({
       id = string
