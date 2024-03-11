@@ -10,3 +10,11 @@ resource "google_project_iam_member" "backend_executor" {
   role     = each.value
   member   = "serviceAccount:${google_service_account.backend_executor.email}"
 }
+
+resource "google_cloud_run_v2_service_iam_member" "backend_invoker" {
+  project  = google_cloud_run_v2_service.backend.project
+  location = google_cloud_run_v2_service.backend.location
+  name     = google_cloud_run_v2_service.backend.name
+  role     = "roles/run.invoker"
+  member   = "serviceAccount:${var.frontend.executor}"
+}

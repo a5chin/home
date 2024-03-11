@@ -4,4 +4,5 @@ module "backend" {
   location   = var.location
   run        = var.run
   db         = var.db
+  frontend   = data.terraform_remote_state.frontend.outputs
 }
