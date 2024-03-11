@@ -6,7 +6,7 @@ definitions:
           $ref: '#/definitions/entity.Article'
         type: array
     type: object
-  controller.GetViewersResponse:
+  controller.GetTotalViewersResponse:
     properties:
       viewers:
         type: integer
@@ -76,7 +76,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/controller.GetViewersResponse'
+            $ref: '#/definitions/controller.GetTotalViewersResponse'
         "400":
           description: Bad Request
           schema:

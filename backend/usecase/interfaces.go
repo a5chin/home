@@ -10,5 +10,5 @@ type ArticleRepository interface {
 }
 
 type ViewerRepository interface {
-	GetViewers(ctx context.Context) (uint, error)
+	GetTotalViewers(ctx context.Context) (uint, error)
 }

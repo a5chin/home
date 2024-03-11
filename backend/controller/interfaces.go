@@ -10,5 +10,5 @@ type ArticleUseCase interface {
 }
 
 type ViewerUseCase interface {
-	GetViewers(ctx context.Context) (uint, error)
+	GetTotalViewers(ctx context.Context) (uint, error)
 }

@@ -52,7 +52,7 @@ func main() {
 		articleRouter.GET("", handleResponse(articleController.GetArticles))
 
 		viewerRouter := v1.Group("viewers")
-		viewerRouter.GET("", handleResponse(viewerController.GetViewers))
+		viewerRouter.GET("", handleResponse(viewerController.GetTotalViewers))
 	}
 
 	runApp(app, conf)

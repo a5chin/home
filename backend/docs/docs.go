@@ -79,7 +79,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.GetViewersResponse"
+                            "$ref": "#/definitions/controller.GetTotalViewersResponse"
                         }
                     },
                     "400": {
@@ -110,7 +110,7 @@ const docTemplate = `{
                 }
             }
         },
-        "controller.GetViewersResponse": {
+        "controller.GetTotalViewersResponse": {
             "type": "object",
             "properties": {
                 "viewers": {

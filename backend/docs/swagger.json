@@ -71,7 +71,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.GetViewersResponse"
+                            "$ref": "#/definitions/controller.GetTotalViewersResponse"
                         }
                     },
                     "400": {
@@ -102,7 +102,7 @@
                 }
             }
         },
-        "controller.GetViewersResponse": {
+        "controller.GetTotalViewersResponse": {
             "type": "object",
             "properties": {
                 "viewers": {
