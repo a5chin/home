@@ -18,5 +18,5 @@ DB_PORT="3306"
 
 ```
 docker-compose up backend
-open localhost:8080
+open http://localhost:8080
 ```
