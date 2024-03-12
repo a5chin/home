@@ -2,14 +2,14 @@ package usecase
 
 import "context"
 
-type ViewerUseCase struct {
-	ViewerRepository
+type LPUseCase struct {
+	LPRepository
 }
 
-func NewViewerUseCase(r ViewerRepository) *ViewerUseCase {
-	return &ViewerUseCase{r}
+func NewLPUseCase(r LPRepository) *LPUseCase {
+	return &LPUseCase{r}
 }
 
-func (u ViewerUseCase) GetTotalViewers(ctx context.Context) (uint, error) {
-	return u.ViewerRepository.GetTotalViewers(ctx)
+func (u LPUseCase) GetTotalViewers(ctx context.Context) (uint, error) {
+	return u.LPRepository.GetTotalViewers(ctx)
 }

@@ -4,12 +4,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type ViewerController struct {
-	ViewerUseCase
+type LPController struct {
+	LPUseCase
 }
 
-func NewViewerController(u ViewerUseCase) *ViewerController {
-	return &ViewerController{ViewerUseCase: u}
+func NewLPController(u LPUseCase) *LPController {
+	return &LPController{u}
 }
 
 type GetTotalViewersResponse struct {
@@ -20,15 +20,15 @@ type GetTotalViewersResponse struct {
 //
 // @Summary    閲覧人数取得 API
 // @Description
-// @Tags       Viewer
+// @Tags       LP
 // @Accept     json
 // @Produce    json
 // @Success    200     	{object}    GetTotalViewersResponse
 // @Failure    400     	{object}    entity.ErrorResponse
 // @Failure    404     	{object}    entity.ErrorResponse
 // @Router     /viewers [get]
-func (c ViewerController) GetTotalViewers(ctx *gin.Context) (interface{}, error) {
-	viewers, err := c.ViewerUseCase.GetTotalViewers(ctx)
+func (c LPController) GetTotalViewers(ctx *gin.Context) (interface{}, error) {
+	viewers, err := c.LPUseCase.GetTotalViewers(ctx)
 	if err != nil {
 		return nil, err
 	}

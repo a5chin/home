@@ -7,14 +7,14 @@ import (
 	"gorm.io/gorm"
 )
 
-type ViewerRepository struct {
+type LPRepository struct {
 }
 
-func NewViewerRepository() *ViewerRepository {
-	return &ViewerRepository{}
+func NewLPRepository() *LPRepository {
+	return &LPRepository{}
 }
 
-func (r ViewerRepository) GetTotalViewers(ctx context.Context) (uint, error) {
+func (r LPRepository) GetTotalViewers(ctx context.Context) (uint, error) {
 	var record uint
 
 	db, _ := ctx.Value(driver.TxKey).(*gorm.DB)

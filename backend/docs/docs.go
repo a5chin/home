@@ -72,7 +72,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Viewer"
+                    "LP"
                 ],
                 "summary": "閲覧人数取得 API",
                 "responses": {

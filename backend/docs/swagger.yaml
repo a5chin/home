@@ -87,5 +87,5 @@ paths:
             $ref: '#/definitions/entity.ErrorResponse'
       summary: 閲覧人数取得 API
       tags:
-      - Viewer
+      - LP
 swagger: "2.0"
