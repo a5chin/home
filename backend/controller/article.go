@@ -53,3 +53,28 @@ func (c ArticleController) GetArticles(ctx *gin.Context) (interface{}, error) {
 	}
 	return GetArticlesResponse{Articles: articles}, nil
 }
+
+type GetArticleByIDResponse struct {
+	Article *entity.Article `json:"article"`
+}
+
+// GetArticleByID godoc
+//
+// @Summary		記事取得 API
+// @Description
+// @Tags		Article
+// @Accept		json
+// @Produce		json
+// @Param		articleId	path	string	true	"Article ID"
+// @Success		200     	{object}    GetArticlesResponse
+// @Failure		400     	{object}    entity.ErrorResponse
+// @Failure		404     	{object}    entity.ErrorResponse
+// @Router		/articles/{articleId} [get]
+func (c ArticleController) GetArticleByID(ctx *gin.Context) (interface{}, error) {
+	articleId := ctx.Param("articleId")
+	article, err := c.ArticleUseCase.GetArticleByID(ctx, articleId)
+	if err != nil {
+		return nil, err
+	}
+	return GetArticleByIDResponse{Article: article}, nil
+}

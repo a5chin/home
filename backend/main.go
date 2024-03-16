@@ -50,6 +50,7 @@ func main() {
 
 		articleRouter := v1.Group("articles")
 		articleRouter.GET("", handleResponse(articleController.GetArticles))
+		articleRouter.GET(":articleId", handleResponse(articleController.GetArticleByID))
 
 		lpRouter := v1.Group("viewers")
 		lpRouter.GET("", handleResponse(lpController.GetTotalViewers))
@@ -66,8 +67,8 @@ func runApp(app *gin.Engine, conf *config.Config) {
 
 		app.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-		log.Println(fmt.Sprintf("http://localhost:%s", conf.PORT))
-		log.Println(fmt.Sprintf("http://localhost:%s/swagger/index.html", conf.PORT))
+		log.Printf("http://localhost:%s", conf.PORT)
+		log.Printf("http://localhost:%s/swagger/index.html", conf.PORT)
 	}
 	app.Run(fmt.Sprintf("%s:%s", conf.HOSTNAME, conf.PORT))
 }
