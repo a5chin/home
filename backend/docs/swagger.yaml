@@ -19,6 +19,10 @@ definitions:
         type: integer
       id:
         type: string
+      tags:
+        items:
+          $ref: '#/definitions/entity.Tag'
+        type: array
       title:
         type: string
       viewer:
@@ -27,6 +31,13 @@ definitions:
   entity.ErrorResponse:
     properties:
       message:
+        type: string
+    type: object
+  entity.Tag:
+    properties:
+      id:
+        type: string
+      name:
         type: string
     type: object
 info:

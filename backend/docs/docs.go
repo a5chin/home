@@ -173,6 +173,12 @@ const docTemplate = `{
                 "id": {
                     "type": "string"
                 },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/entity.Tag"
+                    }
+                },
                 "title": {
                     "type": "string"
                 },
@@ -185,6 +191,17 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "entity.Tag": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
                     "type": "string"
                 }
             }

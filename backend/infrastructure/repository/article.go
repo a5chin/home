@@ -29,7 +29,7 @@ func (r ArticleRepository) GetArticles(ctx context.Context, limit, offset *int) 
 	if offset != nil {
 		db = db.Offset(*offset)
 	}
-	if err := db.Order("updated_at DESC").Find(&records).Error; err != nil {
+	if err := db.Order("updated_at DESC").Preload("Tags").Find(&records).Error; err != nil {
 		return nil, err
 	}
 
@@ -44,7 +44,7 @@ func (r ArticleRepository) GetArticleByID(ctx context.Context, articleId string)
 	var article *model.Article
 
 	db, _ := ctx.Value(driver.TxKey).(*gorm.DB)
-	if err := db.First(&article, "ID = ?", articleId).Error; err != nil {
+	if err := db.Preload("Tags").First(&article, "ID = ?", articleId).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, entity.WrapError(http.StatusNotFound, err)
 		}
