@@ -29,13 +29,10 @@ func main() {
 
 	// Dependency Injection
 	articleRepository := repository.NewArticleRepository()
-	lpRepository := repository.NewLPRepository()
 
 	articleUseCase := usecase.NewArticleUseCase(articleRepository)
-	lpUseCase := usecase.NewLPUseCase(lpRepository)
 
 	articleController := controller.NewArticleController(articleUseCase)
-	lpController := controller.NewLPController(lpUseCase)
 
 	// Setup webserver
 	app := gin.Default()
@@ -51,9 +48,6 @@ func main() {
 		articleRouter := v1.Group("articles")
 		articleRouter.GET("", handleResponse(articleController.GetArticles))
 		articleRouter.GET(":articleId", handleResponse(articleController.GetArticleByID))
-
-		lpRouter := v1.Group("viewers")
-		lpRouter.GET("", handleResponse(lpController.GetTotalViewers))
 	}
 
 	runApp(app, conf)

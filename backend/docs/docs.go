@@ -105,40 +105,6 @@ const docTemplate = `{
                     }
                 }
             }
-        },
-        "/viewers": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "LP"
-                ],
-                "summary": "閲覧人数取得 API",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/controller.GetTotalViewersResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/entity.ErrorResponse"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/entity.ErrorResponse"
-                        }
-                    }
-                }
-            }
         }
     },
     "definitions": {
@@ -150,14 +116,6 @@ const docTemplate = `{
                     "items": {
                         "$ref": "#/definitions/entity.Article"
                     }
-                }
-            }
-        },
-        "controller.GetTotalViewersResponse": {
-            "type": "object",
-            "properties": {
-                "viewers": {
-                    "type": "integer"
                 }
             }
         },
