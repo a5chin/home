@@ -54,9 +54,9 @@ func (r ArticleRepository) GetArticleByID(ctx context.Context, articleId string)
 	return article.ToEntity(), nil
 }
 
-func (r ArticleRepository) IncrementTarget(ctx context.Context, articleId, target string, number uint) error {
+func (r ArticleRepository) IncrementTarget(ctx context.Context, articleId string, target string, value uint) error {
 	db, _ := ctx.Value(driver.TxKey).(*gorm.DB)
-	if err := db.Model(&model.Article{}).Where("ID = ?").Update("viewers", number+1).Error; err != nil {
+	if err := db.Model(&model.Article{}).Where("ID = ?", articleId).Update(target, value).Error; err != nil {
 		return err
 	}
 	return nil

@@ -18,5 +18,16 @@ func (u ArticleUseCase) GetArticles(ctx context.Context, limit, offset *int) ([]
 }
 
 func (u ArticleUseCase) GetArticleByID(ctx context.Context, articleId string) (*entity.Article, error) {
-	return u.ArticleRepository.GetArticleByID(ctx, articleId)
+	article, err := u.ArticleRepository.GetArticleByID(ctx, articleId)
+	if err != nil {
+		return nil, err
+	}
+
+	article.Viewers += 1
+
+	if err := u.IncrementTarget(ctx, articleId, "viewers", article.Viewers); err != nil {
+		return nil, err
+	}
+
+	return article, err
 }
