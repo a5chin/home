@@ -6,10 +6,13 @@ import (
 	"net/http"
 
 	"home/config"
+	"home/controller"
 	"home/docs"
 	"home/entity"
 	"home/infrastructure/driver"
 	"home/infrastructure/middleware"
+	"home/infrastructure/repository"
+	"home/usecase"
 
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -24,6 +27,13 @@ func main() {
 	conf := config.Load()
 	db := driver.NewDB(conf)
 
+	// Dependency Injection
+	articleRepository := repository.NewArticleRepository()
+
+	articleUseCase := usecase.NewArticleUseCase(articleRepository)
+
+	articleController := controller.NewArticleController(articleUseCase)
+
 	// Setup webserver
 	app := gin.Default()
 	app.Use(middleware.Transaction(db))
@@ -31,6 +41,15 @@ func main() {
 	app.GET("", func(ctx *gin.Context) {
 		ctx.String(http.StatusOK, "It works")
 	})
+
+	{
+		v1 := app.Group("/api/v1")
+
+		articleRouter := v1.Group("articles")
+		articleRouter.GET("", handleResponse(articleController.GetArticles))
+		articleRouter.GET(":articleId", handleResponse(articleController.GetArticleByID))
+		articleRouter.GET("/totalViewers", handleResponse(articleController.GetTotalViewers))
+	}
 
 	runApp(app, conf)
 }
@@ -43,8 +62,8 @@ func runApp(app *gin.Engine, conf *config.Config) {
 
 		app.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-		log.Println(fmt.Sprintf("http://localhost:%s", conf.PORT))
-		log.Println(fmt.Sprintf("http://localhost:%s/swagger/index.html", conf.PORT))
+		log.Printf("http://localhost:%s", conf.PORT)
+		log.Printf("http://localhost:%s/swagger/index.html", conf.PORT)
 	}
 	app.Run(fmt.Sprintf("%s:%s", conf.HOSTNAME, conf.PORT))
 }

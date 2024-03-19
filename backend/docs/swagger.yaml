@@ -1,7 +1,130 @@
+definitions:
+  controller.GetArticlesResponse:
+    properties:
+      articles:
+        items:
+          $ref: '#/definitions/entity.Article'
+        type: array
+    type: object
+  controller.GetTotalViewersResponse:
+    properties:
+      totalViewers:
+        type: integer
+    type: object
+  entity.Article:
+    properties:
+      content:
+        type: string
+      favorite:
+        type: integer
+      id:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/entity.Tag'
+        type: array
+      title:
+        type: string
+      viewer:
+        type: integer
+    type: object
+  entity.ErrorResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  entity.Tag:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
 info:
   contact: {}
   description: home
   title: home
   version: "1.0"
-paths: {}
+paths:
+  /articles:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.GetArticlesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/entity.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/entity.ErrorResponse'
+      summary: 記事一覧取得 API
+      tags:
+      - Article
+  /articles/{articleId}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Article ID
+        in: path
+        name: articleId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.GetArticlesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/entity.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/entity.ErrorResponse'
+      summary: 記事取得 API
+      tags:
+      - Article
+  /articles/totalViewers:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.GetTotalViewersResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/entity.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/entity.ErrorResponse'
+      summary: 全記事閲覧数 API
+      tags:
+      - Article
 swagger: "2.0"
