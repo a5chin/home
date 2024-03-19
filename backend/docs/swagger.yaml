@@ -6,6 +6,11 @@ definitions:
           $ref: '#/definitions/entity.Article'
         type: array
     type: object
+  controller.GetTotalViewersResponse:
+    properties:
+      totalViewers:
+        type: integer
+    type: object
   entity.Article:
     properties:
       content:
@@ -98,6 +103,28 @@ paths:
           schema:
             $ref: '#/definitions/entity.ErrorResponse'
       summary: 記事取得 API
+      tags:
+      - Article
+  /articles/totalViewers:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.GetTotalViewersResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/entity.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/entity.ErrorResponse'
+      summary: 全記事閲覧数 API
       tags:
       - Article
 swagger: "2.0"

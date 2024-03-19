@@ -17,6 +17,10 @@ func (u ArticleUseCase) GetArticles(ctx context.Context, limit, offset *int) ([]
 	return u.ArticleRepository.GetArticles(ctx, limit, offset)
 }
 
+func (u ArticleUseCase) GetTotalViewers(ctx context.Context) (*uint, error) {
+	return u.ArticleRepository.GetTotalViewers(ctx)
+}
+
 func (u ArticleUseCase) GetArticleByID(ctx context.Context, articleId string) (*entity.Article, error) {
 	article, err := u.ArticleRepository.GetArticleByID(ctx, articleId)
 	if err != nil {

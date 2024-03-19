@@ -78,3 +78,26 @@ func (c ArticleController) GetArticleByID(ctx *gin.Context) (interface{}, error)
 	}
 	return GetArticleByIDResponse{Article: article}, nil
 }
+
+type GetTotalViewersResponse struct {
+	TotalViewers *uint `json:"totalViewers"`
+}
+
+// GetTotalViewers godoc
+//
+// @Summary		全記事閲覧数 API
+// @Description
+// @Tags		Article
+// @Accept		json
+// @Produce		json
+// @Success		200     	{object}    GetTotalViewersResponse
+// @Failure		400     	{object}    entity.ErrorResponse
+// @Failure		404     	{object}    entity.ErrorResponse
+// @Router		/articles/totalViewers [get]
+func (c ArticleController) GetTotalViewers(ctx *gin.Context) (interface{}, error) {
+	totalViewers, err := c.ArticleUseCase.GetTotalViewers(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return GetTotalViewersResponse{TotalViewers: totalViewers}, nil
+}

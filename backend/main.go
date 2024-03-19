@@ -48,6 +48,7 @@ func main() {
 		articleRouter := v1.Group("articles")
 		articleRouter.GET("", handleResponse(articleController.GetArticles))
 		articleRouter.GET(":articleId", handleResponse(articleController.GetArticleByID))
+		articleRouter.GET("/totalViewers", handleResponse(articleController.GetTotalViewers))
 	}
 
 	runApp(app, conf)

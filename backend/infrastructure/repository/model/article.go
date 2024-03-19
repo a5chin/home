@@ -2,7 +2,6 @@ package model
 
 import (
 	"home/entity"
-	"log"
 
 	"gorm.io/gorm"
 )
@@ -24,7 +23,6 @@ func (m Article) ToEntity() *entity.Article {
 			tags = append(tags, tag.ToEntity())
 		}
 	}
-	log.Print(m.Tags)
 
 	return &entity.Article{
 		ID:        m.ID,

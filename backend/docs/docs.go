@@ -63,6 +63,40 @@ const docTemplate = `{
                 }
             }
         },
+        "/articles/totalViewers": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Article"
+                ],
+                "summary": "全記事閲覧数 API",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.GetTotalViewersResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/entity.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/entity.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/articles/{articleId}": {
             "get": {
                 "consumes": [
@@ -116,6 +150,14 @@ const docTemplate = `{
                     "items": {
                         "$ref": "#/definitions/entity.Article"
                     }
+                }
+            }
+        },
+        "controller.GetTotalViewersResponse": {
+            "type": "object",
+            "properties": {
+                "totalViewers": {
+                    "type": "integer"
                 }
             }
         },

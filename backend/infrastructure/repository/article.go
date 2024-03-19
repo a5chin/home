@@ -54,6 +54,17 @@ func (r ArticleRepository) GetArticleByID(ctx context.Context, articleId string)
 	return article.ToEntity(), nil
 }
 
+func (r ArticleRepository) GetTotalViewers(ctx context.Context) (*uint, error) {
+	var totalViewers *uint
+
+	db, _ := ctx.Value(driver.TxKey).(*gorm.DB)
+	if err := db.Table("articles").Select("sum(viewers) as totalViewers").Scan(&totalViewers).Error; err != nil {
+		return nil, err
+	}
+
+	return totalViewers, nil
+}
+
 func (r ArticleRepository) IncrementTarget(ctx context.Context, articleId string, target string, value uint) error {
 	db, _ := ctx.Value(driver.TxKey).(*gorm.DB)
 	if err := db.Model(&model.Article{}).Where("ID = ?", articleId).Update(target, value).Error; err != nil {
