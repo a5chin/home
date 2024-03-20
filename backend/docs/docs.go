@@ -182,7 +182,7 @@ const docTemplate = `{
                 "title": {
                     "type": "string"
                 },
-                "viewer": {
+                "viewers": {
                     "type": "integer"
                 }
             }

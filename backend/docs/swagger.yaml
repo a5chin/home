@@ -25,7 +25,7 @@ definitions:
         type: array
       title:
         type: string
-      viewer:
+      viewers:
         type: integer
     type: object
   entity.ErrorResponse:
