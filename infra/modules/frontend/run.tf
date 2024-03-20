@@ -1,3 +1,9 @@
+locals {
+  env = {
+    BASE_URL = var.backend.base_url
+  }
+}
+
 resource "google_cloud_run_v2_service" "frontend" {
   name     = var.run.name
   location = var.location
@@ -18,6 +24,14 @@ resource "google_cloud_run_v2_service" "frontend" {
         limits = {
           cpu    = var.run.cpu
           memory = var.run.memory
+        }
+      }
+
+      dynamic "env" {
+        for_each = local.env
+        content {
+          name  = env.key
+          value = env.value
         }
       }
     }

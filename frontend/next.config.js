@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  output: 'standalone',
-}
+const nextConfig = {
+  output: "standalone",
+  experimental: {
+    serverActions: true,
+  },
+};
+
+module.exports = nextConfig;

@@ -15,7 +15,7 @@ variable "run" {
     image              = string
     max_instance_count = optional(number, 1)
     min_instance_count = optional(number, 0)
-    cpu                = optional(string, "1")
+    cpu                = optional(string, "1000m")
     memory             = optional(string, "128Mi")
     executor = object({
       id = string

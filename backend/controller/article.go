@@ -66,7 +66,7 @@ type GetArticleByIDResponse struct {
 // @Accept		json
 // @Produce		json
 // @Param		articleId	path	string	true	"Article ID"
-// @Success		200     	{object}    GetArticlesResponse
+// @Success		200     	{object}    GetArticleByIDResponse
 // @Failure		400     	{object}    entity.ErrorResponse
 // @Failure		404     	{object}    entity.ErrorResponse
 // @Router		/articles/{articleId} [get]
