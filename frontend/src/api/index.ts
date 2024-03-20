@@ -5,10 +5,6 @@ import { redirect } from "next/navigation";
 
 import api from "./__generated__/$api";
 
-// if (process.env.API_URL === undefined) {
-//   throw new Error("API_URL environment variable is not defined.");
-// }
-
 axios.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (error: unknown) => {
@@ -25,8 +21,14 @@ axios.interceptors.response.use(
     console.error(error);
 
     return Promise.reject();
-  },
+  }
 );
 
-const axiosConfig = { timeout: 1000, baseURL: "http://0.0.0.0:4010" };
+const axiosConfig = {
+  timeout: 1000,
+  baseURL: new URL(
+    "/api/v1",
+    "https://home-backend-oj3fqx44ka-uc.a.run.app/api/v1"
+  ).toString(),
+};
 export const client = api(aspida(axios, axiosConfig));

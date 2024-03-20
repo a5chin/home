@@ -1,17 +1,19 @@
 /* eslint-disable */
-import type * as Types from '../@types'
+import type * as Types from "../@types";
 
 export type Methods = {
   get: {
-    query?: {
-      /** limit */
-      limit?: string | undefined
-      /** offset */
-      offset?: string | undefined
-    } | undefined
+    query?:
+      | {
+          /** limit */
+          limit?: string | undefined;
+          /** offset */
+          offset?: string | undefined;
+        }
+      | undefined;
 
-    status: 200
+    status: 200;
     /** OK */
-    resBody: Types.Controller_GetArticlesResponse
-  }
-}
+    resBody: Types.Controller_GetArticlesResponse;
+  };
+};

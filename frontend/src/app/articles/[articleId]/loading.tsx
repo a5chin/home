@@ -1,6 +1,6 @@
 import { Container } from "@/lib/@chakra-ui/react";
 import { BasicLayout } from "@/component/layout/BasicLayout";
-import { ArticleDetailFallback } from "@/app/articles/[id]/_component/server/ArticleDetail";
+import { ArticleDetailFallback } from "@/app/articles/[articleId]/_component/server/ArticleDetail";
 
 export default async function Articles() {
   return (

@@ -10,9 +10,10 @@ export const getArticle = async ({
 }: {
   articleId: string;
 }): Promise<Article> => {
-  console.log(client.articles._articleId(articleId).$path())
-  const articleRes = (await client.articles._articleId(articleId).$get()).article;
-  console.log(articleRes)
+  console.log(client.articles._articleId(articleId).$path());
+  const articleRes = (await client.articles._articleId(articleId).$get())
+    .article;
+  console.log(articleRes);
 
   if (articleRes === undefined) {
     throw new Error("parse error");

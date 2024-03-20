@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-import { DateTime } from "./DateTime";
 import { Tag } from "./Tag";
 
 export const Article = z.object({

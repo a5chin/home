@@ -1,4 +1,4 @@
-import { ArticleDetail } from "@/app/articles/[id]/_component/server/ArticleDetail";
+import { ArticleDetail } from "@/app/articles/[articleId]/_component/server/ArticleDetail";
 import { Container } from "@/lib/@chakra-ui/react";
 import { BasicLayout } from "@/component/layout/BasicLayout";
 
