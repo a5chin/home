@@ -6,5 +6,5 @@ type Article struct {
 	Content   string `json:"content"`
 	Tags      []*Tag `json:"tags"`
 	Viewers   uint   `json:"viewers"`
-	Favorites uint   `json:"favorite"`
+	Favorites uint   `json:"favorites"`
 }

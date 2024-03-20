@@ -1,4 +1,9 @@
 definitions:
+  controller.GetArticleByIDResponse:
+    properties:
+      article:
+        $ref: '#/definitions/entity.Article'
+    type: object
   controller.GetArticlesResponse:
     properties:
       articles:
@@ -15,7 +20,7 @@ definitions:
     properties:
       content:
         type: string
-      favorite:
+      favorites:
         type: integer
       id:
         type: string
@@ -93,7 +98,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/controller.GetArticlesResponse'
+            $ref: '#/definitions/controller.GetArticleByIDResponse'
         "400":
           description: Bad Request
           schema:

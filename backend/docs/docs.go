@@ -122,7 +122,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.GetArticlesResponse"
+                            "$ref": "#/definitions/controller.GetArticleByIDResponse"
                         }
                     },
                     "400": {
@@ -142,6 +142,14 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "controller.GetArticleByIDResponse": {
+            "type": "object",
+            "properties": {
+                "article": {
+                    "$ref": "#/definitions/entity.Article"
+                }
+            }
+        },
         "controller.GetArticlesResponse": {
             "type": "object",
             "properties": {
@@ -167,7 +175,7 @@ const docTemplate = `{
                 "content": {
                     "type": "string"
                 },
-                "favorite": {
+                "favorites": {
                     "type": "integer"
                 },
                 "id": {
